@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kano Starter Guide - Puppy's Edition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f9f0ff, #f0f9ff, #fff0f9);
+            color: #5a5a82;
+            line-height: 1.6;
+            padding: 20px;
+            background-attachment: fixed;
+            background-size: 200% 200%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 3px solid #ffb6c1;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="3" fill="%23ffb6c1" opacity="0.4"/><circle cx="50" cy="30" r="4" fill="%23b5e8e0" opacity="0.4"/><circle cx="80" cy="20" r="5" fill="%23ffd1dc" opacity="0.4"/><circle cx="10" cy="70" r="4" fill="%23b5e8e0" opacity="0.4"/><circle cx="40" cy="80" r="3" fill="%23ffb6c1" opacity="0.4"/><circle cx="90" cy="75" r="5" fill="%23ffd1dc" opacity="0.4"/></svg>');
+            z-index: -1;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: #ff85a2;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0px #ffd1dc;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            color: #85c7f9;
+            margin-bottom: 20px;
+        }
+        
+        .puppy-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffb6c1, #ffd1dc);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-top: 10px;
+            box-shadow: 0 3px 8px rgba(255, 182, 193, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .guide-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 2px solid;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+        }
+        
+        .section-gp::before { background: linear-gradient(90deg, #ffb6c1, #ffd1dc); }
+        .section-voting::before { background: linear-gradient(90deg, #b5e8e0, #a0ded6); }
+        .section-find::before { background: linear-gradient(90deg, #ffd8a6, #ffcc99); }
+        .section-contracts::before { background: linear-gradient(90deg, #c5a8ff, #b399ff); }
+        .section-cp::before { background: linear-gradient(90deg, #85c7f9, #6bb8f7); }
+        .section-relics::before { background: linear-gradient(90deg, #ff9aa2, #ff85a2); }
+        .section-tasks::before { background: linear-gradient(90deg, #ffccf9, #ffb6f9); }
+        .section-masteries::before { background: linear-gradient(90deg, #a2e1db, #8fd9d3); }
+        .section-enchants::before { background: linear-gradient(90deg, #b5b9ff, #a2a8ff); }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2 i {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        li::before {
+            content: "•";
+            color: #ff85a2;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+        
+        .tip {
+            background: rgba(255, 214, 165, 0.3);
+            border-left: 4px solid #ffaa80;
+            padding: 12px 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 15px 0;
+        }
+        
+        .warning {
+            background: rgba(255, 182, 193, 0.3);
+            border-left: 4px solid #ff85a2;
+            padding: 12px 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 15px 0;
+        }
+        
+        a {
+            color: #6bb8f7;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: #ff85a2;
+            text-decoration: underline;
+        }
+        
+        .relic-tier {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            background: rgba(181, 232, 224, 0.2);
+            border-radius: 10px;
+        }
+        
+        .tier-label {
+            font-weight: bold;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ff85a2;
+            color: white;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            color: #85c7f9;
+            font-size: 1.1rem;
+        }
+        
+        .paw-print {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="65" r="25" fill="%23ffb6c1"/><circle cx="30" cy="40" r="15" fill="%23ffb6c1"/><circle cx="70" cy="40" r="15" fill="%23ffb6c1"/><circle cx="20" cy="25" r="12" fill="%23ffb6c1"/><circle cx="50" cy="20" r="12" fill="%23ffb6c1"/><circle cx="80" cy="25" r="12" fill="%23ffb6c1"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .guide-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Kano Starter Guide <i class="fas fa-crown"></i></h1>
+            <div class="subtitle">Arruff! arf arf!!</div>
+            <div class="puppy-badge">Puppy's Edition</div>
+        </header>
+        
+        <div class="guide-container">
+            <!-- GP Making Section -->
+            <div class="section section-gp">
+                <h2><i class="fas fa-coins"></i> GP Making</h2>
+                <ul>
+                    <li><strong>Skilling Tasks:</strong> Visit Fritz the Skiller (east of Home teleport)</li>
+                    <li>Select tasks for any skill you meet level requirements for</li>
+                    <li>Reroll unwanted tasks by clicking "Get Task" again (for a fee)</li>
+                    <li>Rewards: <strong>100k–400k+ GP</strong> per task</li>
+                    <li>Earn <strong>Skilling Points</strong> to spend in the Skilling Shop</li>
+                </ul>
+                <div class="tip">
+                    <i class="fas fa-lightbulb"></i> Each outfit in the shop gives <strong>25 Achievement Points</strong>
+                </div>
+                <ul>
+                    <li><strong>Thieving:</strong> Pickpocket NPCs for GP (prioritize obtaining the Rogue's Outfit)</li>
+                    <li>Ardougne Knights (trapped in buildings) are highly AFK-friendly</li>
+                </ul>
+            </div>
+            
+            <!-- Voting Section -->
+            <div class="section section-voting">
+                <h2><i class="fas fa-vote-yea"></i> Voting / Vote Shop</h2>
+                <ul>
+                    <li>Vote every <strong>12 hours</strong> via <code>;;vote</code></li>
+                </ul>
+                <div class="warning">
+                    <i class="fas fa-exclamation-circle"></i> <strong>Critical Tip:</strong> DO NOT claim votes until unlocking the <strong>Point Harvester relic</strong> (doubles banked votes)
+                </div>
+                <ul>
+                    <li>Stackable with occasional "Double Vote" server boosts</li>
+                    <li><strong>Vote Shop Strategy:</strong></li>
+                    <li><strong>75 votes</strong> = <strong>$5 Bond</strong> (grants 5 dono tier points + 50 dono shop credits)</li>
+                    <li><strong>Priority:</strong> Bonds > most Vote Shop items (many duplicates in Dono Shop)</li>
+                </ul>
+            </div>
+            
+            <!-- Where to Find Things Section -->
+            <div class="section section-find">
+                <h2><i class="fas fa-map-marker-alt"></i> Where to Find Things</h2>
+                <ul>
+                    <li><strong>Shops at Home:</strong> Talk to any Shop Merchant → navigate via tabs</li>
+                    <li><strong>Exception:</strong> Tynan (Fishing Shop, south of Home) sells feathers!</li>
+                    <li><strong>General Shop</strong> (west of Home, across bridge):</li>
+                    <li>Zahur: Decants potions</li>
+                    <li>Blue Wizard: Imbues gear (see Combat Points)</li>
+                    <li><strong>AFK Training:</strong> Cows: <code>Teleporter > Training > Cows</code> (Lumbridge cow pen)</li>
+                </ul>
+            </div>
+            
+            <!-- Contracts Section -->
+            <div class="section section-contracts">
+                <h2><i class="fas fa-file-contract"></i> Contracts</h2>
+                <ul>
+                    <li><strong>Location:</strong> Dr. Banikan (west of Home, across bridge)</li>
+                    <li><strong>Rewards:</strong> Combat Points, XP, GP, and rare items</li>
+                    <li><strong>Types:</strong> Daily tasks + 1 weekly task</li>
+                </ul>
+                <div class="warning">
+                    <i class="fas fa-exclamation-circle"></i> Combat Points are rare and essential!
+                </div>
+            </div>
+            
+            <!-- Combat Points Section -->
+            <div class="section section-cp">
+                <h2><i class="fas fa-fist-raised"></i> Combat Points</h2>
+                <ul>
+                    <li><strong>Uses:</strong> Imbue Black Masks, Slayer Helmets, Salve Amulets, Rings, and Iban Staff</li>
+                    <li><strong>Only method</strong> for imbuing!</li>
+                    <li><strong>NPC:</strong> Blue Wizard in General Shop (west of Home)</li>
+                    <li><strong>Earning Methods:</strong></li>
+                    <li>Combat Achievements</li>
+                    <li>Barrows runs</li>
+                    <li>Slaying superior monsters</li>
+                    <li>Contracts</li>
+                    <li>Exchanging Ancient Artifacts (from Revenants)</li>
+                </ul>
+            </div>
+            
+            <!-- Relics Section -->
+            <div class="section section-relics">
+                <h2><i class="fas fa-gem"></i> Relics</h2>
+                <ul>
+                    <li><strong>Access:</strong> <code>Character Summary</code> → Purple Kourend Favour tab → Relics/Masteries</li>
+                    <li><strong>Plan carefully!</strong> Resets cost votes/dono points later</li>
+                    <li><strong>Unlocking:</strong> Complete tasks (view via Tasks icon)</li>
+                    <li><strong>Starter Guide:</strong> <a href="https://docs.google.com/document/d/1UcZrw8JQEVngVOIbTiPaPhDvSxtvY22yCYJvdLV4UNg/edit?tab=t.0#heading=h.39w76tcj3qjd" target="_blank">Aheiya's Relic Guide</a></li>
+                </ul>
+                
+                <h3>Tier Recommendations:</h3>
+                <div class="relic-tier">
+                    <div class="tier-label">T1</div>
+                    <div><strong>Kano Pick</strong> (fast early tasks)</div>
+                </div>
+                <div class="relic-tier">
+                    <div class="tier-label">T2</div>
+                    <div><strong>Finders Keepers</strong> > Skillers Galore (skilling crates > passive GP)</div>
+                </div>
+                <div class="relic-tier">
+                    <div class="tier-label">T3</div>
+                    <div><strong>Point Harvester</strong> (doubles votes/skilling/Slayer/Pest Control points)</div>
+                </div>
+                <div class="relic-tier">
+                    <div class="tier-label">T4</div>
+                    <div><strong>Slayer Mastermind</strong> (choose Slayer tasks)</div>
+                </div>
+                <div class="relic-tier">
+                    <div class="tier-label">T5</div>
+                    <div><strong>Blood Alchemy</strong> (doubles enchanting orb drops → high GP)</div>
+                </div>
+                <div class="relic-tier">
+                    <div class="tier-label">T6</div>
+                    <div><strong>Combat Artisan</strong> (popular QoL)</div>
+                </div>
+            </div>
+            
+            <!-- Relic Tasks Section -->
+            <div class="section section-tasks">
+                <h2><i class="fas fa-tasks"></i> Relic Tasks I Liked</h2>
+                <ul>
+                    <li><strong>Milk Cows</strong> (AFK/overnight):
+                        <ul>
+                            <li>100/1k/10k/50k milks → <strong>185 total points</strong></li>
+                        </ul>
+                    </li>
+                    <li><strong>Craft Gems</strong> (fast points):
+                        <ul>
+                            <li>Buy 1,250 uncut sapphires/emeralds/rubies/diamonds (Al Kharid Gem Shop)</li>
+                            <li>Cut all → <strong>830 points</strong></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Combat Masteries Section -->
+            <div class="section section-masteries">
+                <h2><i class="fas fa-shield-alt"></i> Combat Masteries</h2>
+                <ul>
+                    <li><strong>Unlocks:</strong> Attack speed doubling + powerful combat buffs (view in Relics tab)</li>
+                    <li><strong>Earning:</strong> Complete tasks</li>
+                    <li><strong>Examples:</strong></li>
+                    <li>Defeat an enemy in full Void</li>
+                    <li>Kill 10+ monsters with Combat Lv. 100+</li>
+                    <li>Achieve 55 Slayer</li>
+                    <li>Defeat "any boss"</li>
+                </ul>
+            </div>
+            
+            <!-- Enchantments Section -->
+            <div class="section section-enchants">
+                <h2><i class="fas fa-magic"></i> Enchantments</h2>
+                <ul>
+                    <li><strong>Orb Drops:</strong> Annexing, Faltering, Turmoil, Annulment (from monsters)</li>
+                    <li><strong>Mechanics (PoE-inspired)</strong></li>
+                    <li><strong>Enchanting Bowl:</strong> West-south of Home (near Fritz the Skiller)</li>
+                    <li><strong>Process:</strong> Place gear (non-ammo) + orbs in the interface</li>
+                </ul>
+                
+                <h3>Orb Types:</h3>
+                <ul>
+                    <li><strong>Annex:</strong> Adds <em>1 new random enchantment</em> (from right-side list)</li>
+                    <li><strong>Turmoil:</strong> Adds/replaces <em>3 random enchantments</em></li>
+                    <li><strong>Falter:</strong> Rerolls <em>tiers</em> of existing enchants (may alter god-type enchants)</li>
+                    <li><strong>Annul:</strong> Removes <em>1 random enchantment</em></li>
+                </ul>
+                
+                <p><strong>Enchantment List:</strong> <a href="https://puppyramada.github.io/enchants.kano/" target="_blank">kano Enchantments Guide</a></p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Message me ingame! <span class="paw-print"></span> Im almost always on! <strong>@Puppy</strong></p>
+            <p><i class="fas fa-heart"></i> arf arf arf! <i class="fas fa-heart"></i></p>
+        </footer>
+    </div>
+</body>
+</html>
