@@ -244,6 +244,53 @@
                 font-size: 2.2rem;
             }
         }
+        
+        /* Image and Modal Styles */
+        .location-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin: 10px 0;
+        }
+        
+        .location-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            cursor: pointer;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -264,6 +311,7 @@
                     <li>Reroll unwanted tasks by clicking "Get Task" again (for a fee)</li>
                     <li>Rewards: <strong>100k–400k+ GP</strong> per task</li>
                     <li>Earn <strong>Skilling Points</strong> to spend in the Skilling Shop</li>
+                    <li><strong>Collection Log Rewards:</strong> Easy rewards like Dragon Defender and Rogue's Outfit give good GP</li>
                 </ul>
                 <div class="tip">
                     <i class="fas fa-lightbulb"></i> Each outfit in the shop gives <strong>25 Achievement Points</strong>
@@ -298,6 +346,7 @@
                     <li><strong>Shops at Home:</strong> Talk to any Shop Merchant → navigate via tabs</li>
                     <li><strong>Exception:</strong> Tynan (Fishing Shop, south of Home) sells feathers!</li>
                     <li><strong>General Shop</strong> (west of Home, across bridge):</li>
+                    <img src="general-shop-location.png" alt="General Shop Location" class="location-image" id="generalShopImage">
                     <li>Zahur: Decants potions</li>
                     <li>Blue Wizard: Imbues gear (see Combat Points)</li>
                     <li><strong>AFK Training:</strong> Cows: <code>Teleporter > Training > Cows</code> (Lumbridge cow pen)</li>
@@ -424,10 +473,42 @@
             </div>
         </div>
         
+        <!-- Modal -->
+        <div id="imageModal" class="modal">
+            <span class="close-modal">&times;</span>
+            <img class="modal-content" id="modalImage">
+        </div>
+        
         <footer>
             <p>Message me ingame! <span class="paw-print"></span> Im almost always on! <strong>@Puppy</strong></p>
             <p><i class="fas fa-heart"></i> arf arf arf! <i class="fas fa-heart"></i></p>
         </footer>
     </div>
+    
+    <script>
+        // Get the modal
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const img = document.getElementById("generalShopImage");
+        const closeBtn = document.getElementsByClassName("close-modal")[0];
+
+        // When the user clicks on the image, open the modal
+        img.onclick = function() {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+        }
+
+        // When the user clicks on the close button, close the modal
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
